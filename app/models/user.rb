@@ -18,6 +18,8 @@
 #
 
 class User < ApplicationRecord
+  has_many :entries
+
   validates :name, presence: true, length: { maximum: 30 },
              on: :create
   validates :user_name, presence: true, length: { maximum: 30 },

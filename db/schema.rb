@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_09_080544) do
+ActiveRecord::Schema.define(version: 2020_01_29_100014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "entries", force: :cascade do |t|
+    t.text "content"
+    t.string "image"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_entries_on_user_id"
+  end
+
+  create_table "replies", force: :cascade do |t|
+    t.text "content"
+    t.bigint "entry_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["entry_id"], name: "index_replies_on_entry_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -27,4 +44,6 @@ ActiveRecord::Schema.define(version: 2020_01_09_080544) do
     t.index ["user_name"], name: "index_users_on_user_name", unique: true
   end
 
+  add_foreign_key "entries", "users"
+  add_foreign_key "replies", "entries"
 end

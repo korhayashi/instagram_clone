@@ -11,6 +11,17 @@
 #                  sessions POST   /sessions(.:format)                                                                      sessions#create
 #               new_session GET    /sessions/new(.:format)                                                                  sessions#new
 #                   session DELETE /sessions/:id(.:format)                                                                  sessions#destroy
+#                   entries GET    /entries(.:format)                                                                       entries#index
+#                           POST   /entries(.:format)                                                                       entries#create
+#                 new_entry GET    /entries/new(.:format)                                                                   entries#new
+#                edit_entry GET    /entries/:id/edit(.:format)                                                              entries#edit
+#                     entry GET    /entries/:id(.:format)                                                                   entries#show
+#                           PATCH  /entries/:id(.:format)                                                                   entries#update
+#                           PUT    /entries/:id(.:format)                                                                   entries#update
+#                           DELETE /entries/:id(.:format)                                                                   entries#destroy
+#                   replies POST   /replies(.:format)                                                                       replies#create
+#                edit_reply GET    /replies/:id/edit(.:format)                                                              replies#edit
+#                     reply DELETE /replies/:id(.:format)                                                                   replies#destroy
 #        rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
 # rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
 #        rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
@@ -25,4 +36,8 @@ Rails.application.routes.draw do
   end
 
   resources :sessions, only: [:new, :create, :destroy]
+
+  resources :entries
+
+  resources :replies, only: [:create, :edit, :destroy]
 end

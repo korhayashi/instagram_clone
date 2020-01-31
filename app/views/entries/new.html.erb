@@ -1,0 +1,39 @@
+<header>
+  <%= link_to entries_path do %>
+    <%= icon 'fab', 'instagram' %>
+    <%= '|' %>
+    <%= image_tag 'https://fontmeme.com/permalink/200109/23a93f3d238949f77b4e6ed79577bcc1.png', class: 'header_logo' %>
+  <% end %>
+
+  <%= link_to 'new post',new_entry_path %>
+
+  <%= link_to user_path(current_user.id) do %>
+    <%= icon 'far', 'user' %>
+  <% end %>
+</header>
+
+<%= form_with(model: @entry, local: true) do |f| %>
+  <% if @entry.errors.any? %>
+   <div id="error_explanation">
+     <ul>
+
+     <% @entry.errors.full_messages.each do |msg| %>
+       <li><%= msg %></li>
+     <% end %>
+     </ul>
+   </div>
+  <% end %>
+
+  <div class="form_photo">
+    <%= f.file_field :image %>
+    <%= image_tag(@entry.image.url) if @entry.image && @entry.image.url %>
+    <%= f.hidden_field :image_cache %>
+  </div>
+  <div class="form_content">
+    <%= f.text_area :content, placeholder: 'キャプションを入力...' %>
+  </div>
+  <div class="form_submit">
+    <%= link_to '戻る', 'javascript:history.back()', class: 'btn_back' %>
+    <%= f.submit 'シェアする' %>
+  </div>
+<% end %>
