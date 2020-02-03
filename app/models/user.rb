@@ -19,6 +19,9 @@
 
 class User < ApplicationRecord
   has_many :entries
+  has_many :goods, dependent: :destroy
+  has_many :reply_goods, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 30 },
              on: :create

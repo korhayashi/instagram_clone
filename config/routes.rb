@@ -22,6 +22,12 @@
 #                   replies POST   /replies(.:format)                                                                       replies#create
 #                edit_reply GET    /replies/:id/edit(.:format)                                                              replies#edit
 #                     reply DELETE /replies/:id(.:format)                                                                   replies#destroy
+#                     goods POST   /goods(.:format)                                                                         goods#create
+#                      good DELETE /goods/:id(.:format)                                                                     goods#destroy
+#               reply_goods POST   /reply_goods(.:format)                                                                   reply_goods#create
+#                reply_good DELETE /reply_goods/:id(.:format)                                                               reply_goods#destroy
+#                 bookmarks POST   /bookmarks(.:format)                                                                     bookmarks#create
+#                  bookmark DELETE /bookmarks/:id(.:format)                                                                 bookmarks#destroy
 #        rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
 # rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
 #        rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
@@ -40,4 +46,10 @@ Rails.application.routes.draw do
   resources :entries
 
   resources :replies, only: [:create, :edit, :destroy]
+
+  resources :goods, only: [:create, :destroy]
+
+  resources :reply_goods, only: [:create, :destroy]
+
+  resources :bookmarks, only: [:create, :destroy]
 end

@@ -19,6 +19,8 @@
 
 class Reply < ApplicationRecord
   belongs_to :entry
+  has_many :reply_goods, dependent: :destroy
+  has_many :reply_good_users, through: :reply_goods, source: :user
 
   validates :content, presence: true
 end

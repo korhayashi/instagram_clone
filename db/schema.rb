@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_29_100014) do
+ActiveRecord::Schema.define(version: 2020_02_03_131701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "entry_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "entries", force: :cascade do |t|
     t.text "content"
@@ -24,12 +31,26 @@ ActiveRecord::Schema.define(version: 2020_01_29_100014) do
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
+  create_table "goods", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "entry_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "replies", force: :cascade do |t|
     t.text "content"
     t.bigint "entry_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["entry_id"], name: "index_replies_on_entry_id"
+  end
+
+  create_table "reply_goods", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "reply_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

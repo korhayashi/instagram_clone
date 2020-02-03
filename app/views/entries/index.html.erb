@@ -33,9 +33,39 @@
       </div>
 
       <div class="entry_menu">
-        <%= icon 'far', 'heart' %>
+        <div class="entry_good">
+          <% good = current_user.goods.find_by(entry_id: entry.id) %>
+          <% if good.blank? %>
+            <%= link_to goods_path(entry_id: entry.id), method: :post do %>
+              <%= icon 'far', 'heart' %>
+            <% end %>
+          <% else %>
+            <%= link_to good_path(id: good.id), method: :delete do %>
+              <%= icon 'fas', 'heart' %>
+            <% end %>
+          <% end %>
+        </div>
         <%= link_to entry_path(entry.id) do %>
           <%= icon 'far', 'comment' %>
+        <% end %>
+        <div class="bookmark">
+          <% bookmark = current_user.bookmarks.find_by(entry_id: entry.id) %>
+          <% if bookmark.blank? %>
+            <%= link_to bookmarks_path(entry_id: entry.id), method: :post do %>
+              <%= icon 'far', 'bookmark' %>
+            <% end %>
+          <% else %>
+            <%= link_to bookmark_path(id: good.id), method: :delete do %>
+              <%= icon 'fas', 'bookmark' %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="goods_count">
+        <% good_users = entry.good_users %>
+        <% if good_users.present? %>
+          <%= "いいね！#{good_users.count}件" %>
         <% end %>
       </div>
 
@@ -57,6 +87,18 @@
                 <%= reply.entry.user.user_name %>
               <% end %>
               <%= reply.content %>
+              <div class="reply_good">
+                <% rep_good = current_user.reply_goods.find_by(reply_id: reply.id) %>
+                <% if rep_good.blank? %>
+                  <%= link_to reply_goods_path(reply_id: reply.id), method: :post do %>
+                    <%= icon 'far', 'heart' %>
+                  <% end %>
+                <% else %>
+                  <%= link_to reply_good_path(id: rep_good.id), method: :delete do %>
+                    <%= icon 'fas', 'heart' %>
+                  <% end %>
+                <% end %>
+              </div>
             </div>
           <% end %>
         </div>
