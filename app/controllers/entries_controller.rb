@@ -24,7 +24,8 @@ class EntriesController < ApplicationController
   end
 
   def show
-    
+    @replies = Reply.where(entry_id: @entry.id)
+    @reply = Reply.new
   end
 
   def edit

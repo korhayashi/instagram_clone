@@ -69,7 +69,7 @@
         <% end %>
       </div>
 
-      <% unless entry.content.blank? %>
+      <% if entry.content.present? %>
         <div class="entry_content">
           <%= link_to user_path(entry.user_id) do %>
             <%= entry.user.user_name %>
@@ -79,7 +79,7 @@
       <% end %>
 
       <% replies = @all_reply.where(entry_id: entry.id) %>
-      <% unless replies.blank? %>
+      <% if replies.present? %>
         <div class="replies">
           <% replies.each do |reply| %>
             <div class="reply_content">
