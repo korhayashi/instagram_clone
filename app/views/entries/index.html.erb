@@ -83,8 +83,8 @@
         <div class="replies">
           <% replies.each do |reply| %>
             <div class="reply_content">
-              <%= link_to user_path(reply.entry.user_id) do %>
-                <%= reply.entry.user.user_name %>
+              <%= link_to user_path(reply.user_id) do %>
+                <%= reply.user.user_name %>
               <% end %>
               <%= reply.content %>
               <div class="reply_good">

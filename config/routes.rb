@@ -2,6 +2,8 @@
 #
 #                    Prefix Verb   URI Pattern                                                                              Controller#Action
 #             confirm_users POST   /users/confirm(.:format)                                                                 users#confirm
+#            user_icon_user POST   /users/:id/user_icon(.:format)                                                           users#user_icon
+#                saved_user POST   /users/:id/saved(.:format)                                                               users#saved
 #                     users POST   /users(.:format)                                                                         users#create
 #                  new_user GET    /users/new(.:format)                                                                     users#new
 #                 edit_user GET    /users/:id/edit(.:format)                                                                users#edit
@@ -38,6 +40,11 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :edit, :update, :show] do
     collection do
       post :confirm
+    end
+
+    member do
+      get :user_icon
+      get :saved
     end
   end
 

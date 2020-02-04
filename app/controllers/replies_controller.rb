@@ -2,7 +2,10 @@ class RepliesController < ApplicationController
   before_action :set_reply, only: [:edit, :update, :destroy]
 
   def create
-    @reply = Reply.new(reply_params)
+    @reply = current_user.replies.build(reply_params)
+    # @reply = Reply.new(reply_params)
+    # @reply.user_id = current_user.id
+    # この2行が上記になる
     if @reply.save
       redirect_to entries_path
     end

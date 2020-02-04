@@ -52,8 +52,8 @@
     <div class="show_replies">
       <% @replies.each do |reply| %>
         <div class="reply_content">
-          <%= link_to user_path(reply.entry.user_id) do %>
-            <%= reply.entry.user.user_name %>
+          <%= link_to user_path(reply.user_id) do %>
+            <%= reply.user.user_name %>
           <% end %>
           <%= reply.content %>
           <%= time_ago_in_words(reply.created_at)+'前' %>
