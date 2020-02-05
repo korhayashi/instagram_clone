@@ -1,0 +1,23 @@
+<%= form_with(model: @entry, local: true, url: choose_new_or_edit_entry) do |f| %>
+  <% if @entry.errors.any? %>
+   <div id="error_explanation">
+     <ul>
+       <% @entry.errors.full_messages.each do |msg| %>
+         <li><%= msg %></li>
+       <% end %>
+     </ul>
+   </div>
+  <% end %>
+
+  <div class="form_photo">
+    <%= f.file_field :image %>
+    <%= image_tag(@entry.image.url) if @entry.image && @entry.image.url %>
+    <%= f.hidden_field :image_cache %>
+  </div>
+  <div class="form_content">
+    <%= f.text_area :content, placeholder: 'キャプションを入力...' %>
+  </div>
+  <div class="form_submit">
+    <%= f.submit 'シェアする' %>
+  </div>
+<% end %>

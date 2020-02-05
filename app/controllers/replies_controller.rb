@@ -1,5 +1,4 @@
 class RepliesController < ApplicationController
-  before_action :set_reply, only: [:edit, :update, :destroy]
 
   def create
     @reply = current_user.replies.build(reply_params)
@@ -11,25 +10,15 @@ class RepliesController < ApplicationController
     end
   end
 
-  def edit
-
-  end
-
-  def update
-
-  end
-
   def destroy
-
+    @reply = Reply.find(params[:id])
+    @reply.destroy
+    redirect_to entries_path
   end
 
   private
 
   def reply_params
     params.require(:reply).permit(:content, :entry_id)
-  end
-
-  def set_reply
-    @reply = Reply.find(params[:id])
   end
 end

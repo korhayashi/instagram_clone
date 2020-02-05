@@ -41,6 +41,11 @@ class EntriesController < ApplicationController
     redirect_to entries_path
   end
 
+  def confirm
+    @entry = Entry.new(entry_params)
+    render :new if @entry.invalid?
+  end
+
   private
 
   def entry_params

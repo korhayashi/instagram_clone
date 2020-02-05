@@ -29,7 +29,11 @@ class UsersController < ApplicationController
   end
 
   def update
-
+    if @user.update(user_params)
+      redirect_to user_path(@user.id)
+    else
+      render :edit
+    end
   end
 
   def show
@@ -47,7 +51,8 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :user_name, :password)
+    params.require(:user).permit(:name, :email, :user_name, :password,
+                                 :user_image, :user_image_cache)
   end
 
   def set_user

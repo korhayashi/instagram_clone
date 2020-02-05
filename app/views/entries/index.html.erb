@@ -24,8 +24,13 @@
         <%= entry.user.user_name %>
       <% end %>
 
-      <%= link_to entry_path(entry.id), method: :delete, data: { confirm: '本当に削除してよろしいですか？' } do %>
-        <%= icon 'fas', 'trash' %>
+      <% if current_user.id == entry.user_id %>
+        <%= link_to edit_entry_path(entry.id) do %>
+          <%= icon 'fas', 'pen' %>
+        <% end %>
+        <%= link_to entry_path(entry.id), method: :delete, data: { confirm: '本当に削除してよろしいですか？' } do %>
+          <%= icon 'fas', 'trash' %>
+        <% end %>
       <% end %>
 
       <div class="entry_image">

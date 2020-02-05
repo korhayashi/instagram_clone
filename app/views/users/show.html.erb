@@ -18,20 +18,10 @@
 
 <div class="user_header">
   <div class="user_header_left">
-    <% if current_user.id == @user.id %>
-      <%= link_to user_icon_user_path(@user.id) do %>
-        <% if @user.user_image.blank? %>
-          <%= icon 'fas', 'user-circle' %>
-        <% else %>
-          <%= image_tag @user.user_image.url %>
-        <% end %>
-      <% end %>
+    <% if @user.user_image.blank? %>
+      <%= icon 'fas', 'user-circle' %>
     <% else %>
-      <% if @user.user_image.blank? %>
-        <%= icon 'fas', 'user-circle' %>
-      <% else %>
-        <%= image_tag @user.user_image.url %>
-      <% end %>
+      <%= image_tag @user.user_image.url %>
     <% end %>
   </div>
   <div class="user_header_right">

@@ -25,15 +25,16 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :my_bookmarks, through: :bookmarks, source: :entry
 
-  validates :name, presence: true, length: { maximum: 30 },
-             on: :create
+  validates :name, presence: true, length: { maximum: 30 }
   validates :user_name, presence: true, length: { maximum: 30 },
-             uniqueness: true, on: :create
+             uniqueness: true
   before_validation { email.downcase! }
   validates :email, presence: true, length: { maximum: 255 },
              format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
-             uniqueness: true, on: :create
+             uniqueness: true
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 },
              on: :create
+  validates :password, length: { minimum: 6 },allow_blank: true, on: :update
+  mount_uploader :user_image, ImageUploader
 end

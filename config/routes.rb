@@ -2,8 +2,7 @@
 #
 #                    Prefix Verb   URI Pattern                                                                              Controller#Action
 #             confirm_users POST   /users/confirm(.:format)                                                                 users#confirm
-#            user_icon_user POST   /users/:id/user_icon(.:format)                                                           users#user_icon
-#                saved_user POST   /users/:id/saved(.:format)                                                               users#saved
+#                saved_user GET    /users/:id/saved(.:format)                                                               users#saved
 #                     users POST   /users(.:format)                                                                         users#create
 #                  new_user GET    /users/new(.:format)                                                                     users#new
 #                 edit_user GET    /users/:id/edit(.:format)                                                                users#edit
@@ -13,6 +12,7 @@
 #                  sessions POST   /sessions(.:format)                                                                      sessions#create
 #               new_session GET    /sessions/new(.:format)                                                                  sessions#new
 #                   session DELETE /sessions/:id(.:format)                                                                  sessions#destroy
+#           confirm_entries POST   /entries/confirm(.:format)                                                               entries#confirm
 #                   entries GET    /entries(.:format)                                                                       entries#index
 #                           POST   /entries(.:format)                                                                       entries#create
 #                 new_entry GET    /entries/new(.:format)                                                                   entries#new
@@ -43,16 +43,19 @@ Rails.application.routes.draw do
     end
 
     member do
-      get :user_icon
       get :saved
     end
   end
 
   resources :sessions, only: [:new, :create, :destroy]
 
-  resources :entries
+  resources :entries do
+    collection do
+      post :confirm
+    end
+  end
 
-  resources :replies, only: [:create, :edit, :destroy]
+  resources :replies, only: [:create, :destroy]
 
   resources :goods, only: [:create, :destroy]
 

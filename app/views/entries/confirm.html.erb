@@ -1,0 +1,13 @@
+<h3>以下の内容で投稿してよろしいですか？</h3>
+
+<%= form_with(model: @entry, local: true) do |f| %>
+  <div class="confirm_image_area">
+    <%= image_tag @entry.image.url if @entry.image && @entry.image.url %>
+  </div>
+  <div class="confirm_content_area">
+    <%= @entry.content %>
+  </div>
+  <%= f.hidden_field :image_cache %>
+  <%= f.submit '戻る', name: 'back' %>
+  <%= f.submit '投稿' %>
+<% end %>
