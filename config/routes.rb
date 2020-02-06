@@ -62,4 +62,6 @@ Rails.application.routes.draw do
   resources :reply_goods, only: [:create, :destroy]
 
   resources :bookmarks, only: [:create, :destroy]
+
+  mount LetterOpenerWeb::Engine, at: "/inbox" if Rails.env.development?
 end

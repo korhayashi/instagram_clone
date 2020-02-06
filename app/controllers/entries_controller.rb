@@ -16,10 +16,15 @@ class EntriesController < ApplicationController
     # @entry = Entry.new(entry_params)
     # @entry.user_id = current_user.id
     # この2行が上記になる
-    if @entry.save
-      redirect_to entries_path
+    if params[:back]
+      render :new
     else
-      render 'new'
+      if @entry.save
+        ContactMailer.contact_mail(@entry).deliver
+        redirect_to entries_path
+      else
+        render 'new'
+      end
     end
   end
 
@@ -42,7 +47,10 @@ class EntriesController < ApplicationController
   end
 
   def confirm
-    @entry = Entry.new(entry_params)
+    @entry = current_user.entries.build(entry_params)
+    # @entry = Entry.new(entry_params)
+    # @entry.user_id = current_user.id
+    # この2行が上記になる
     render :new if @entry.invalid?
   end
 
