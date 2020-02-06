@@ -62,7 +62,7 @@
           <%= time_ago_in_words(reply.created_at)+'前' %>
           <% if current_user.id == reply.user_id %>
             <div class="reply_delete">
-              <%= link_to entry_path(@entry.id), method: :delete, data: { confirm: '本当に削除してよろしいですか？' } do %>
+              <%= link_to reply_path(reply.id), method: :delete, data: { confirm: '本当に削除してよろしいですか？' } do %>
                 <%= icon 'fas', 'trash' %>
               <% end %>
             </div>

@@ -1,5 +1,7 @@
 class EntriesController < ApplicationController
-  before_action :set_entry, only: [:show, :edit, :update, :destroy]
+  before_action :set_entry, only: [:show, :edit, :update, :destroy, :not_your_entry]
+  before_action :not_logged_in
+  before_action :not_your_entry, only: [:edit, :update, :destroy]
 
   def index
     @entries = Entry.order(created_at: :desc)
@@ -62,5 +64,11 @@ class EntriesController < ApplicationController
 
   def set_entry
     @entry = Entry.find(params[:id])
+  end
+
+  def not_your_entry
+    unless current_user.id == @entry.user_id
+      redirect_to entries_path
+    end
   end
 end

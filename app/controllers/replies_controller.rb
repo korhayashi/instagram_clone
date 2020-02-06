@@ -1,4 +1,6 @@
 class RepliesController < ApplicationController
+  before_action :not_logged_in
+  before_action :not_your_reply, only: [:destroy]
 
   def create
     @reply = current_user.replies.build(reply_params)
@@ -20,5 +22,12 @@ class RepliesController < ApplicationController
 
   def reply_params
     params.require(:reply).permit(:content, :entry_id)
+  end
+
+  def not_your_reply
+    @reply = Reply.find(params[:id])
+    unless current_user.id == @reply.user_id
+      redirect_to entries_path
+    end
   end
 end

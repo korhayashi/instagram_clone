@@ -1,4 +1,6 @@
 class ReplyGoodsController < ApplicationController
+  before_action :not_logged_in
+
   def create
     rep_good = current_user.reply_goods.create(reply_id: params[:reply_id])
     redirect_to entries_path
