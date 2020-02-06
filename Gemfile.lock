@@ -86,6 +86,8 @@ GEM
     crass (1.0.5)
     erubi (1.9.0)
     execjs (2.7.0)
+    faker (2.10.1)
+      i18n (>= 1.6, < 2)
     ffi (1.11.3)
     font-awesome-sass (5.4.1)
       sassc (>= 1.11)
@@ -227,6 +229,7 @@ DEPENDENCIES
   carrierwave
   chromedriver-helper
   coffee-rails (~> 4.2)
+  faker
   font-awesome-sass (~> 5.4.1)
   jbuilder (~> 2.5)
   letter_opener_web

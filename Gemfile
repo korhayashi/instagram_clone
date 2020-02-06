@@ -40,6 +40,8 @@ group :development do
 
   # メール確認用
   gem 'letter_opener_web'
+  # seedデータ
+  gem 'faker'
 end
 
 group :test do
