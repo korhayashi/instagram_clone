@@ -1,139 +1,173 @@
-<header>
-  <%= link_to entries_path do %>
-    <%= icon 'fab', 'instagram' %>
-    <%= '|' %>
-    <%= image_tag 'https://fontmeme.com/permalink/200109/23a93f3d238949f77b4e6ed79577bcc1.png', class: 'header_logo' %>
-  <% end %>
+<%= render 'header' %>
 
-  <%= link_to 'new post',new_entry_path %>
-
-  <%= link_to user_path(current_user.id) do %>
-    <%= icon 'far', 'user' %>
-  <% end %>
-</header>
-
-<article class="entry_list">
-  <% @entries.each do |entry| %>
-    <div class="entry">
-      <%= link_to user_path(entry.user_id) do %>
-        <% if entry.user.user_image.blank? %>
-          <%= icon 'fas', 'user-circle' %>
-        <% else %>
-          <%= image_tag entry.user.user_image.url %>
-        <% end %>
-        <%= entry.user.user_name %>
-      <% end %>
-
-      <% if current_user.id == entry.user_id %>
-        <%= link_to edit_entry_path(entry.id) do %>
-          <%= icon 'fas', 'pen' %>
-        <% end %>
-        <%= link_to entry_path(entry.id), method: :delete, data: { confirm: '本当に削除してよろしいですか？' } do %>
-          <%= icon 'fas', 'trash' %>
-        <% end %>
-      <% end %>
-
-      <div class="entry_image">
-        <%= image_tag entry.image.url %>
-      </div>
-
-      <div class="entry_menu">
-        <div class="entry_good">
-          <% good = current_user.goods.find_by(entry_id: entry.id) %>
-          <% if good.blank? %>
-            <%= link_to goods_path(entry_id: entry.id), method: :post do %>
-              <%= icon 'far', 'heart' %>
-            <% end %>
-          <% else %>
-            <%= link_to good_path(id: good.id), method: :delete do %>
-              <%= icon 'fas', 'heart' %>
-            <% end %>
-          <% end %>
-        </div>
-        <%= link_to entry_path(entry.id) do %>
-          <%= icon 'far', 'comment' %>
-        <% end %>
-        <div class="bookmark">
-          <% bookmark = current_user.bookmarks.find_by(entry_id: entry.id) %>
-          <% if bookmark.blank? %>
-            <%= link_to bookmarks_path(entry_id: entry.id), method: :post do %>
-              <%= icon 'far', 'bookmark' %>
-            <% end %>
-          <% else %>
-            <%= link_to bookmark_path(id: good.id), method: :delete do %>
-              <%= icon 'fas', 'bookmark' %>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="goods_count">
-        <% good_users = entry.good_users %>
-        <% if good_users.present? %>
-          <%= "いいね！#{good_users.count}件" %>
-        <% end %>
-      </div>
-
-      <% if entry.content.present? %>
-        <div class="entry_content">
-          <%= link_to user_path(entry.user_id) do %>
-            <%= entry.user.user_name %>
-          <% end %>
-          <%= entry.content %>
-        </div>
-      <% end %>
-
-      <% replies = @all_reply.where(entry_id: entry.id) %>
-      <% if replies.present? %>
-        <div class="replies">
-          <% replies.each do |reply| %>
-            <div class="reply_content">
-              <%= link_to user_path(reply.user_id) do %>
-                <%= reply.user.user_name %>
-              <% end %>
-              <%= reply.content %>
-              <div class="reply_good">
-                <% rep_good = current_user.reply_goods.find_by(reply_id: reply.id) %>
-                <% if rep_good.blank? %>
-                  <%= link_to reply_goods_path(reply_id: reply.id), method: :post do %>
-                    <%= icon 'far', 'heart' %>
-                  <% end %>
+<div class="container">
+  <div class="entry_container">
+    <article class="entry_list">
+      <% @entries.each do |entry| %>
+        <section class="entry">
+          <div class="entry_header">
+            <div class="entry_user_icon_area">
+              <%= link_to user_path(entry.user_id) do %>
+                <% if entry.user.user_image.blank? %>
+                  <%= icon 'fas', 'user-circle', class: 'user_icon entry_user_icon' %>
                 <% else %>
-                  <%= link_to reply_good_path(id: rep_good.id), method: :delete do %>
-                    <%= icon 'fas', 'heart' %>
-                  <% end %>
+                  <%= image_tag entry.user.user_image.url, class: 'user_icon entry_user_icon' %>
                 <% end %>
+              <% end %>
+            </div>
+            <div class="entry_user_name emphasis">
+              <%= link_to user_path(entry.user_id) do %>
+                <%= entry.user.user_name %>
+              <% end %>
+            </div>
+
+            <% if current_user.id == entry.user_id %>
+              <div class="entry_edit">
+                <%= link_to edit_entry_path(entry.id) do %>
+                  <%= icon 'fas', 'pen', class: 'space entry_menu_icon' %>
+                <% end %>
+              </div>
+              <div class="entry_delete">
+                <%= link_to entry_path(entry.id), method: :delete, data: { confirm: '本当に削除してよろしいですか？' } do %>
+                  <%= icon 'fas', 'trash', class: 'space entry_menu_icon' %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="entry_image">
+            <%= image_tag entry.image.url %>
+          </div>
+
+          <div class="entry_menu">
+            <div class="entry_good">
+              <% good = current_user.goods.find_by(entry_id: entry.id) %>
+              <% if good.blank? %>
+                <%= link_to goods_path(entry_id: entry.id), method: :post do %>
+                  <%= icon 'far', 'heart', class: 'space entry_addition_icon' %>
+                <% end %>
+              <% else %>
+                <%= link_to good_path(id: good.id), method: :delete do %>
+                  <%= icon 'fas', 'heart', class: 'space entry_addition_icon heart_icon' %>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="entry_show">
+              <%= link_to entry_path(entry.id) do %>
+                <%= icon 'far', 'comment', class: 'space entry_addition_icon' %>
+              <% end %>
+            </div>
+            <div class="entry_bookmark">
+              <% bookmark = current_user.bookmarks.find_by(entry_id: entry.id) %>
+              <% if bookmark.blank? %>
+                <%= link_to bookmarks_path(entry_id: entry.id), method: :post do %>
+                  <%= icon 'far', 'bookmark', class: 'space entry_addition_icon' %>
+                <% end %>
+              <% else %>
+                <%= link_to bookmark_path(id: good.id), method: :delete do %>
+                  <%= icon 'fas', 'bookmark', class: 'space entry_addition_icon' %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+
+          <% good_users = entry.good_users %>
+          <% if good_users.present? %>
+            <div class="goods_count_area emphasis">
+              <span class="goods_count space">
+                <%= "いいね！#{good_users.count}件" %>
+              </span>
+            </div>
+          <% end %>
+
+          <% if entry.content.present? %>
+            <div class="entry_content">
+              <div class="entry_content_left emphasis name_space">
+                <%= link_to user_path(entry.user_id) do %>
+                  <%= entry.user.user_name %>
+                <% end %>
+              </div>
+              <div class="entry_content_right comment">
+                <%= entry.content %>
               </div>
             </div>
           <% end %>
-        </div>
-      <% end %>
 
-      <div class="entry_time">
-        <%= time_ago_in_words(entry.created_at)+'前' %>
+          <% replies = @all_reply.where(entry_id: entry.id) %>
+          <% if replies.present? %>
+            <div class="replies">
+              <% replies.each do |reply| %>
+                <div class="reply_content">
+                  <div class="reply_header">
+                    <div class="reply_name emphasis name_space">
+                      <%= link_to user_path(reply.user_id) do %>
+                        <%= reply.user.user_name %>
+                      <% end %>
+                    </div>
+                    <div class="reply_comment comment">
+                      <%= reply.content %>
+                    </div>
+                    <div class="reply_good">
+                      <% rep_good = current_user.reply_goods.find_by(reply_id: reply.id) %>
+                      <% if rep_good.blank? %>
+                        <%= link_to reply_goods_path(reply_id: reply.id), method: :post do %>
+                          <%= icon 'far', 'heart', class: 'reply_heart_icon reply_heart_before' %>
+                        <% end %>
+                      <% else %>
+                        <%= link_to reply_good_path(id: rep_good.id), method: :delete do %>
+                          <%= icon 'fas', 'heart', class: 'reply_heart_icon heart_icon' %>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+
+          <div class="entry_time_area">
+            <span class="entry_time">
+              <%= time_ago_in_words(entry.created_at)+'前' %>
+            </span>
+          </div>
+
+          <div class="reply_form_area">
+          <%= form_with(model: @reply, local: true) do |f| %>
+            <%= f.hidden_field :entry_id, value: entry.id %>
+            <div class="reply_form">
+              <div class="reply_form_content">
+                <%= f.text_field :content, placeholder: 'コメントを追加...' %>
+              </div>
+              <div class="reply_form_submit">
+              <%= f.submit '投稿する', class: 'btn_submit' %>
+              </div>
+            </div>
+          <% end %>
+          </div>
+        </section>
+      <% end %>
+    </article>
+  </div>
+
+  <div class="user_area">
+    <div class="user_area_icon">
+      <%= link_to user_path(current_user.id) do %>
+        <% if current_user.user_image.blank? %>
+          <%= icon 'fas', 'user-circle', class: 'user_icon userarea_user_icon' %>
+        <% else %>
+          <%= image_tag current_user.user_image.url, class: 'user_icon userarea_user_icon' %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="user_area_info">
+      <div class="user_area_username emphasis">
+        <%= link_to user_path(current_user.id) do %>
+          <%= current_user.user_name %>
+        <% end %>
+      </div>
+      <div class="user_area_name">
+      <%= current_user.name %>
       </div>
     </div>
-
-    <div class="reply_form">
-      <%= form_with(model: @reply, local: true) do |f| %>
-        <%= f.text_field :content, placeholder: 'コメントを追加...' %>
-        <%= f.hidden_field :entry_id, value: entry.id %>
-        <%= f.submit '投稿する' %>
-      <% end %>
-    </div>
-  <% end %>
-</article>
-
-<div class="user_area">
-  <%= link_to user_path(current_user.id) do %>
-    <% if current_user.user_image.blank? %>
-      <%= icon 'fas', 'user-circle' %>
-    <% else %>
-      <%= image_tag current_user.user_image.url %>
-    <% end %>
-  <% end %>
-  <%= link_to user_path(current_user.id) do %>
-    <%= current_user.user_name %>
-  <% end %>
-  <%= current_user.name %>
+  </div>
 </div>

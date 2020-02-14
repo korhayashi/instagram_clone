@@ -1,15 +1,7 @@
-<header>
-  <%= link_to entries_path do %>
-    <%= icon 'fab', 'instagram' %>
-    <%= '|' %>
-    <%= image_tag 'https://fontmeme.com/permalink/200109/23a93f3d238949f77b4e6ed79577bcc1.png', class: 'header_logo' %>
-  <% end %>
+<%= render 'header' %>
 
-  <%= link_to 'new post',new_entry_path %>
-
-  <%= link_to user_path(current_user.id) do %>
-    <%= icon 'far', 'user' %>
-  <% end %>
-</header>
-
-<%= render 'form' %>
+<div class="container">
+  <div class="general_container">
+    <%= render 'form' %>
+  </div>
+</div>

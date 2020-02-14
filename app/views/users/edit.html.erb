@@ -1,27 +1,11 @@
-<header>
-  <%= link_to entries_path do %>
-    <%= icon 'fab', 'instagram' %>
-    <%= '|' %>
-    <%= image_tag 'https://fontmeme.com/permalink/200109/23a93f3d238949f77b4e6ed79577bcc1.png', class: 'header_logo' %>
-  <% end %>
-
-  <%= link_to 'new post',new_entry_path %>
-
-  <%= link_to user_path(current_user.id) do %>
-    <% if current_user.id == @user.id %>
-      <%= icon 'fas', 'user' %>
-    <% else %>
-      <%= icon 'far', 'user' %>
-    <% end %>
-  <% end %>
-</header>
+<%= render 'header' %>
 
 <%= form_with(model: @user, local: true) do |f| %>
   <div class="now_user_image">
     <% if @user.user_image.present? %>
-      <%= image_tag @user.user_image.url %>
+      <%= image_tag @user.user_image.url, class: 'user_icon' %>
     <% else %>
-      <%= icon 'fas', 'user-circle' %>
+      <%= icon 'fas', 'user-circle', class: 'user_icon' %>
     <% end %>
   </div>
   <div class="user_name">

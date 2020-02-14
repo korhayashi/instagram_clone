@@ -1,0 +1,31 @@
+<header>
+  <div class="header_container">
+    <div class="header_title_logo">
+      <%= link_to entries_path do %>
+        <div class="header_a_container">
+          <div class="header_icon">
+            <%= icon 'fab', 'instagram', class: 'header_icon_img' %>
+          </div>
+          <div class="vertical_line"></div>
+          <div class="header_title">
+            <%= image_tag 'https://fontmeme.com/permalink/200109/23a93f3d238949f77b4e6ed79577bcc1.png', class: 'header_logo' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="header_new">
+      <%= link_to 'new post', new_entry_path %>
+    </div>
+
+    <div class="header_user">
+      <%= link_to user_path(current_user.id) do %>
+        <% if current_user.id == @user.id %>
+          <%= icon 'fas', 'user', class: 'header_user_icon' %>
+        <% else %>
+          <%= icon 'far', 'user', class: 'header_user_icon' %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</header>
