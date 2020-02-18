@@ -1,26 +1,30 @@
 <div class="signin">
-  <div class="title_logo">
-    <img src="https://fontmeme.com/permalink/200109/23a93f3d238949f77b4e6ed79577bcc1.png" class="title_logo_image">
-  </div>
-  <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
-    <div class="signin_username_or_email">
-      <%= f.text_field :user_name_or_email, placeholder: 'ユーザーネーム、メールアドレス' %>
-    </div>
-    <div class="signin_password">
-      <%= f.password_field :password, placeholder: 'パスワード' %>
-    </div>
-    <div class="signin_submit">
-      <%= f.submit 'ログイン' %>
-    </div>
-    <div class="flash_message">
-      <% flash.each do |key, value| %>
-        <%= content_tag(:div, value, class: "#{key}") %>
+  <div class="signin_container">
+    <div class="signin_form">
+      <div class="title_logo">
+        <img src="https://fontmeme.com/permalink/200109/23a93f3d238949f77b4e6ed79577bcc1.png" class="title_logo_image">
+      </div>
+      <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+        <div class="signin_username_or_email">
+          <%= f.text_field :user_name_or_email, placeholder: 'ユーザーネーム、メールアドレス' %>
+        </div>
+        <div class="signin_password">
+          <%= f.password_field :password, placeholder: 'パスワード' %>
+        </div>
+        <div class="signin_submit">
+          <%= f.submit 'ログイン', class: 'btn_submit' %>
+        </div>
+        <div id="error_explanation" class="flash_message">
+          <% flash.each do |key, value| %>
+            <%= content_tag(:div, value, class: "#{key}") %>
+          <% end %>
+        </div>
       <% end %>
     </div>
-  <% end %>
-</div>
 
-  <div class="signin_here">
-    <%= 'アカウントをお持ちでないですか？' %>
-    <%= link_to '登録する', new_user_path %>
-  </div>
+    <div class="signup_here">
+      <%= 'アカウントをお持ちでないですか？' %>
+      <%= link_to '登録する', new_user_path %>
+    </div>
+  <div>
+</div>

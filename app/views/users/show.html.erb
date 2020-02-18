@@ -1,47 +1,67 @@
 <%= render 'header' %>
 
-<div class="user_header">
-  <div class="user_header_left">
-    <% if @user.user_image.blank? %>
-      <%= icon 'fas', 'user-circle', class: 'user_icon' %>
-    <% else %>
-      <%= image_tag @user.user_image.url, class: 'user_icon' %>
-    <% end %>
-  </div>
-  <div class="user_header_right">
-    <%= @user.user_name %>
+<div class="contianer">
+  <div class="user_container">
+    <div class="user_header">
+      <div class="user_header_left">
+        <% if @user.user_image.blank? %>
+          <%= icon 'fas', 'user-circle', class: 'user_icon user_detail_icon' %>
+        <% else %>
+          <%= image_tag @user.user_image.url, class: 'user_icon user_detail_icon' %>
+        <% end %>
+      </div>
+      <div class="user_header_right">
+        <div class="user_detail_name_area">
+          <span class="user_detail_username">
+            <%= @user.user_name %>
+          </span>
 
-    <% if current_user.id == @user.id %>
-      <%= link_to edit_user_path(current_user.id) do %>
-        <%= 'プロフィールを編集' %>
+          <% if current_user.id == @user.id %>
+            <div class="user_detail_edit_profile emphasis">
+              <%= link_to edit_user_path(current_user.id) do %>
+                <%= 'プロフィールを編集' %>
+              <% end %>
+            </div>
+            <div class="logout">
+              <%= link_to session_path(current_user.id), method: :delete, data: { confirm: 'ログアウトしてよろしいですか？' } do %>
+                <%= icon 'fas', 'sign-out-alt' %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="user_detail_posts">
+          <%= '投稿' %>
+          <span class="emphasis">
+            <%= @user.entries.count %>
+          </span>
+          <%= '件' %>
+        </div>
+        <div class="user_detail_name emphasis">
+          <%= @user.name %>
+        </div>
+      </div>
+    </div>
+
+    <div class="user_detail_menu">
+      <%= link_to user_path(@user.id), class: 'user_detail_all_post now_user_page' do %>
+        <%= icon 'fas', 'th' %>
+        <%= '投稿' %>
       <% end %>
-      <%= link_to session_path(current_user.id), method: :delete, data: { confirm: 'ログアウトしてよろしいですか？' } do %>
-        <%= icon 'fas', 'sign-out-alt' %>
-      <% end %>
-    <% end %>
-
-    <%= "投稿#{@user.entries.count}件" %>
-    <%= @user.name %>
-  </div>
-</div>
-
-<div class="user_menu">
-  <%= link_to user_path(@user.id) do %>
-    <%= icon 'fas', 'th' %>
-    <%= '投稿' %>
-  <% end %>
-  <%= link_to saved_user_path(@user.id) do %>
-    <%= icon 'far', 'bookmark' %>
-    <%= '保存済み' %>
-  <% end %>
-</div>
-
-<div class="user_images">
-  <% @images.each do |image| %>
-    <div class="user_photo">
-      <%= link_to entry_path(image.id) do %>
-        <%= image_tag image.image.url %>
+      <%= link_to saved_user_path(@user.id), class: 'user_detail_saved another_page' do %>
+        <%= icon 'far', 'bookmark' %>
+        <%= '保存済み' %>
       <% end %>
     </div>
-  <% end %>
+
+    <div class="user_detail_images">
+      <% @images.each do |image| %>
+        <div class="user_photo">
+          <%= link_to entry_path(image.id) do %>
+            <%= image_tag image.image.url %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

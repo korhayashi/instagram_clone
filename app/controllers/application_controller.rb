@@ -9,7 +9,8 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in
-    if current_user.present?
+    # binding.irb
+    if logged_in?
       redirect_to entries_path
     end
   end

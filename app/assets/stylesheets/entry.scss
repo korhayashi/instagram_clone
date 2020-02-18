@@ -1,11 +1,4 @@
 // 共通部分
-input[type="submit"] {
-  border-radius: 0.3rem;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
 
 .space {
   margin: 1rem;
@@ -24,8 +17,13 @@ input[type="submit"] {
   font-size: 1.2rem;
 }
 
-.general_container {
-  padding: 14rem 0;
+.reply_btn_submit {
+  margin-left: auto;
+  padding: 1rem 1.5rem;
+  color: #3597ed;
+  font-size: 1.4rem;
+  font-weight: bold;
+  border-style: none;
 }
 
 // indexページ
@@ -67,17 +65,13 @@ input[type="submit"] {
 
 .entry_user_icon {
   margin: 1rem;
-  width: 3.5rem;
+  width: 3rem;
+  height: 3rem;
   font-size: 3rem;
 }
 
 .entry_edit {
   margin-left: auto;
-}
-
-.emphasis {
-  font-size: 1.3rem;
-  font-weight: bold;
 }
 
 .comment {
@@ -168,15 +162,6 @@ input[type="submit"] {
   input::placeholder {
     color: $subfont_color;
   }
-
-  .btn_submit {
-    margin-left: auto;
-    padding: 1rem 1.5rem;
-    color: #3597ed;
-    font-size: 1.4rem;
-    font-weight: bold;
-    border-style: none;
-  }
 }
 
 .reply_form_submit {
@@ -185,6 +170,7 @@ input[type="submit"] {
 
 .userarea_user_icon {
   width: 5rem;
+  height: 5rem;
   font-size: 5rem;
 }
 
@@ -202,6 +188,7 @@ input[type="submit"] {
   position: fixed;
   top: 7.7rem;
   right: 0;
+  z-index: 100;
 }
 
 .user_area_icon {
@@ -216,7 +203,7 @@ input[type="submit"] {
 // フォーム部分
 
 .form {
-  width: 50rem;
+  width: 40rem;
   margin: 0 auto;
 
   textarea {
@@ -227,16 +214,12 @@ input[type="submit"] {
     border: 1px solid $line_color;
     border-radius: 0.3rem;
   }
+}
 
-  .btn_submit {
-    margin-left: auto;
-    padding: 0.8rem 1.5rem;
-    color: #fff;
-    background-color: #3597ed;
-    font-size: 1.4rem;
-    font-weight: bold;
-    border-style: none;
-    border-radius: 0.3rem;
+.photo_show {
+  img {
+    width: 50rem;
+    height: 50rem;
   }
 }
 
@@ -309,10 +292,11 @@ input[type="submit"] {
     color: $subfont_color;
   }
 
-  .btn_submit {
+  .reply_btn_submit {
     margin-left: auto;
     padding: 1rem 1.5rem;
     color: #3597ed;
+    background-color: #fff;
     font-size: 1.4rem;
     font-weight: bold;
     border-style: none;

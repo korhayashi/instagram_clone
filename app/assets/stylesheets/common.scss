@@ -44,6 +44,7 @@ header {
   border-bottom: 1px solid $line_color;
   position: fixed;
   top: 0;
+  z-index: 100;
 }
 
 .header_container {
@@ -111,6 +112,10 @@ header {
     box-shadow: 0.4rem 0.4rem 0.5rem #dedede;
   }
 
+  &:hover {
+    text-decoration: none;
+  }
+
   a:active {
     margin-top: 0.9rem;
     box-shadow: none;
@@ -125,19 +130,57 @@ header {
   font-size: 2.5rem;
 }
 
-.user_icon {
-  border-radius: 5rem;
-}
-
-.container {
+.container, .signin, .signup, .confirm {
   min-height: 100vh;
   background-color: $bg_color;
 }
 
+.general_container {
+  padding: 13rem 0;
+}
+
+input[type="submit"] {
+  border-radius: 0.3rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.emphasis {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.user_icon {
+  border-radius: 50%;
+}
+
+.btn_submit {
+  margin-left: auto;
+  padding: 0.4rem 1rem;
+  color: #fff;
+  background-color: #3597ed;
+  font-size: 1.4rem;
+  font-weight: bold;
+  border-style: none;
+}
+
+input:focus {
+  border: 1px solid $subfont_color;
+  outline: 0;
+}
+
+#error_explanation {
+  margin: 1rem;
+  color: #ed4956;
+  font-size: 1.4rem;
+}
+
 // 確認画面
 
-.confirm {
-  width: 30rem;
+.confirm_container {
+  width: 50rem;
   margin: 0 auto;
   padding-top: 5rem;
   font-size: 1.3rem;
@@ -145,4 +188,8 @@ header {
   h3 {
     font-size: 1.5rem;
   }
+}
+
+.confirm_button {
+  margin: 2rem;
 }

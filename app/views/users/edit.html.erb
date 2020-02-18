@@ -1,50 +1,50 @@
 <%= render 'header' %>
 
-<%= form_with(model: @user, local: true) do |f| %>
-  <div class="now_user_image">
-    <% if @user.user_image.present? %>
-      <%= image_tag @user.user_image.url, class: 'user_icon' %>
-    <% else %>
-      <%= icon 'fas', 'user-circle', class: 'user_icon' %>
+<div class="container">
+  <div class="form_container">
+    <%= form_with(model: @user, local: true) do |f| %>
+      <div class="user_edit_form">
+        <div class="user_edit_now_user_image position_right">
+          <% if @user.user_image.present? %>
+            <%= image_tag @user.user_image.url, class: 'user_icon edit_user_icon' %>
+          <% else %>
+            <%= icon 'fas', 'user-circle', class: 'user_icon edit_user_icon' %>
+          <% end %>
+        </div>
+        <div class="user_edit_username_area_top grid_right">
+          <div class="user_edit_username_top">
+            <%= @user.user_name %>
+          </div>
+          <div class="user_image_edit">
+            <%= f.file_field :user_image %>
+          </div>
+        </div>
+
+        <div class="user_edit_name_area position_right">
+          <%= '名前' %>
+        </div>
+        <div class="user_edit_name grid_right">
+          <%= f.text_field :name %>
+        </div>
+
+        <div class="user_edit_username_area position_right">
+          <%= 'ユーザーネーム' %>
+        </div>
+        <div class="user_edit_username grid_right">
+          <%= f.text_field :user_name %>
+        </div>
+
+        <div class="user_edit_email_area position_right">
+          <%= 'メールアドレス' %>
+        </div>
+        <div class="user_edit_username grid_right">
+          <%= f.email_field :email %>
+        </div>
+
+        <div class="user_edit_submit grid_right">
+          <%= f.submit '送信する', class: 'btn_submit' %>
+        </div>
+      </div>
     <% end %>
   </div>
-  <div class="user_name">
-    <%= @user.user_name %>
-  </div>
-  <div class="user_image_edit">
-    <%= f.file_field :user_image %>
-  </div>
-
-  <table>
-    <tr>
-      <th>
-        <%= '名前' %>
-      </th>
-      <td>
-        <%= f.text_field :name %>
-      </td>
-    </tr>
-    <tr>
-      <th>
-        <%= 'ユーザーネーム' %>
-      </th>
-      <td>
-        <%= f.text_field :user_name %>
-      </td>
-    </tr>
-    <tr>
-      <th>
-        <%= 'メールアドレス' %>
-      </th>
-      <td>
-        <%= f.email_field :email %>
-      </td>
-    </tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td>
-        <%= f.submit '送信する' %>
-      </td>
-    </tr>
-  </table>
-<% end %>
+</div>

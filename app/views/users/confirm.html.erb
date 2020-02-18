@@ -1,34 +1,39 @@
 <div class="confirm">
-  <h3>以下の内容で登録してよろしいですか？</h3>
-  <%= form_with(model: @user, local: true, url: users_path) do |f| %>
-    <%= f.hidden_field :email %>
-    <%= f.hidden_field :name %>
-    <%= f.hidden_field :user_name %>
-    <%= f.hidden_field :password %>
+  <div class="confirm_container user_confirm_container">
+    <h3>以下の内容で登録してよろしいですか？</h3>
+    <%= form_with(model: @user, local: true, url: users_path) do |f| %>
+      <%= f.hidden_field :email %>
+      <%= f.hidden_field :name %>
+      <%= f.hidden_field :user_name %>
+      <%= f.hidden_field :password %>
 
-    <table>
-      <tr>
-        <td>お名前</td>
-        <td>
+      <div class="user_confirm_info">
+        <div class="confirm_name_area confirm_position_right">
+          お名前
+        </div>
+        <div class="confirm_name">
           <%= @user.name %>
-        </td>
-      </tr>
-      <tr>
-        <td>ユーザーネーム</td>
-        <td>
+        </div>
+
+        <div class="confirm_username_area confirm_position_right">
+          ユーザーネーム
+        </div>
+        <div class="confirm_username">
           <%= @user.user_name %>
-        </td>
-      </tr>
-      <tr>
-        <td>メールアドレス</td>
-        <td>
+        </div>
+
+        <div class="confirm_email_area confirm_position_right">
+          メールアドレス
+        </div>
+        <div class="confirm_email">
           <%= @user.email %>
-        </td>
-      </tr>
-    </table>
-    <div class="user_confirm_button">
-      <%= f.submit '戻る', name: 'back' %>
-      <%= f.submit '登録する' %>
-    </div>
-  <% end %>
+        </div>
+      </div>
+
+      <div class="confirm_button user_confirm_button">
+        <%= f.submit '戻る', name: 'back', class: 'btn_submit' %>
+        <%= f.submit '登録する', class: 'btn_submit' %>
+      </div>
+    <% end %>
+  </div>
 </div>

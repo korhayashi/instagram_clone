@@ -1,0 +1,271 @@
+.now_user_page {
+  margin-top: -1px;
+  color: $font_color;
+  border-top: 1px solid $font_color;
+}
+
+.another_page {
+  color: $subfont_color;
+}
+
+.title_logo_image {
+  width: 18rem;
+}
+
+.user_container {
+  width: 95rem;
+  margin: 0 auto;
+  padding: 13rem 0;
+}
+
+.user_header {
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  align-items: center;
+}
+
+.user_header_left {
+  margin-right: 8rem;
+}
+
+.user_detail_icon {
+  width: 14.5rem;
+  height: 14.5rem;
+  font-size: 14rem;
+}
+
+.user_detail_name_area {
+  display: flex;
+  align-items: center;
+}
+
+.user_detail_username {
+  font-size: 2.4rem;
+}
+
+.user_detail_edit_profile {
+
+  a {
+  margin: 0 1rem;
+  padding: 0.8rem 1rem;
+  font-size: 1.4rem;
+  border: 1px solid $line_color;
+  border-radius: 0.5rem;
+  }
+
+  a:active {
+    opacity: 0.4;
+  }
+}
+
+.user_detail_posts {
+  margin: 1.5rem 0;
+}
+
+.user_detail_name {
+  font-size: 1.5rem;
+}
+
+.user_detail_menu {
+  margin-top: 4rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-top: 1px solid $line_color;
+}
+
+.user_detail_all_post {
+  margin-right: 10rem;
+  padding: 1.5rem;
+}
+
+.user_detail_saved {
+  padding: 1.5rem;
+}
+
+.user_detail_images {
+  // display: flex;
+  // justify-content: space-between;
+  // flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.user_photo {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .post_info {
+    width: 100%;
+    height: 100%;
+    padding-left: 35%;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+
+  .post_info:hover {
+    opacity: 1;
+  }
+
+  .post_info_good {
+    margin-right: 3rem;
+  }
+}
+
+// 編集ページ
+
+.form_container {
+  padding-top: 15rem;
+}
+
+.user_edit_form {
+  width: 60rem;
+  margin: 0 auto;
+  padding: 5rem 3rem;
+  border: 1px solid $line_color;
+  border-radius: 0.3rem;
+  background-color: #fff;
+  display: grid;
+  grid-template-columns: 15rem 1fr;
+  grid-template-rows: 7rem repeat(3, 5.5rem);
+
+  input[type="text"], input[type="email"] {
+    width: 30rem;
+    height: 3.3rem;
+    padding: 0 1rem;
+    font-size: 1.5rem;
+    border: 1px solid $line_color;
+    border-radius: 0.3rem;
+  }
+}
+
+.edit_user_icon {
+  width: 4rem;
+  height: 4rem;
+  font-size: 4rem;
+}
+
+.position_right {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: right;
+}
+
+.grid_right {
+  margin-left: 3rem;
+}
+
+.user_edit_submit {
+  grid-column-start: 2;
+}
+
+// ログイン画面
+
+.signin_container, .signup_container {
+  padding-top: 10rem;
+  text-align: center;
+}
+
+.signin_form, .signup_form {
+  width: 35rem;
+  margin: 0 auto 1rem auto;
+  padding: 0 3rem;
+  background-color: #fff;
+  border: 1px solid $line_color;
+  border-radius: 0.3rem;
+
+  h3 {
+    margin: 0;
+    color: $subfont_color;
+    font-size: 1.7rem;
+  }
+
+  input[type="text"], input[type="password"], input[type="email"] {
+    width: 25rem;
+    height: 3.5rem;
+    padding: 0 1rem;
+    background-color: $bg_color;
+    border: 1px solid $line_color;
+    border-radius: 0.3rem;
+  }
+
+  input[type="submit"] {
+    width: 25rem;
+    margin-top: 1.8rem;
+    margin-bottom: 3rem;
+  }
+}
+
+.signin_password {
+  margin-top: 0.8rem;
+}
+
+.signup_here, .signin_here {
+  width: 35rem;
+  margin: 0 auto;
+  padding: 2rem;
+  font-size: 1.3rem;
+  background-color: #fff;
+  border: 1px solid $line_color;
+  border-radius: 0.3rem;
+
+  a {
+    color: #3597ed;
+    font-weight: bold;
+  }
+}
+
+.signin {
+  img {
+    margin :3rem;
+  }
+}
+
+.signup {
+  img {
+    margin-top: 3rem;
+  }
+}
+
+.signup_username, .signup_email {
+  margin: 0.8rem 0;
+}
+
+.user_confirm_container {
+  width: 40rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.user_confirm_info {
+  margin: 2rem;
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  grid-template-rows: repeat(4, 2.5rem);
+}
+
+.confirm_position_right {
+  font-weight: bold;;
+  text-align: right;
+}
