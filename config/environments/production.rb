@@ -94,6 +94,7 @@ Rails.application.configure do
 
   # アクションメーラー関連
   config.action_mailer.default_url_options = { host: 'agile-fortress-57225.herokuapp.com' }
+  config.action_mailer.raise_delivery_errors = true
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     user_name: ENV['SENDGRID_USERNAME'],
