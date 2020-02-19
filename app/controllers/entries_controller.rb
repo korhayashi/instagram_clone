@@ -40,7 +40,11 @@ class EntriesController < ApplicationController
   end
 
   def update
-
+    if @entry.update(entry_params)
+      redirect_to entries_path
+    else
+      render :edit
+    end
   end
 
   def destroy
