@@ -93,7 +93,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # アクションメーラー関連
-  config.action_mailer.default_url_options = { host: 'agile-fortress-57225.herokuapp.com/' }
+  config.action_mailer.default_url_options = { host: 'agile-fortress-57225.herokuapp.com' }
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     user_name: ENV['SENDGRID_USERNAME'],
