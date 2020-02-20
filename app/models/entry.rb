@@ -19,7 +19,7 @@
 #
 
 class Entry < ApplicationRecord
-  has_many :replies
+  has_many :replies, dependent: :destroy
   has_many :goods, dependent: :destroy
   has_many :good_users, through: :goods, source: :user
   has_many :bookmarks, dependent: :destroy
