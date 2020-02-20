@@ -137,6 +137,10 @@
 
 .form_container {
   padding-top: 15rem;
+
+  #error_explanation {
+    text-align: center;
+  }
 }
 
 .user_edit_form {

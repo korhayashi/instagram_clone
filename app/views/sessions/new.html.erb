@@ -2,7 +2,7 @@
   <div class="signin_container">
     <div class="signin_form">
       <div class="title_logo">
-        <img src="https://fontmeme.com/permalink/200109/23a93f3d238949f77b4e6ed79577bcc1.png" class="title_logo_image">
+        <%= image_tag 'https://fontmeme.com/permalink/200109/23a93f3d238949f77b4e6ed79577bcc1.png', class: 'title_logo_image' %>
       </div>
       <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
         <div class="signin_username_or_email">

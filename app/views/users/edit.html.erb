@@ -3,6 +3,13 @@
 <div class="container">
   <div class="form_container">
     <%= form_with(model: @user, local: true) do |f| %>
+      <div id="error_explanation">
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
       <div class="user_edit_form">
         <div class="user_edit_now_user_image position_right">
           <% if @user.user_image.present? %>
