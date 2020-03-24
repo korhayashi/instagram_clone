@@ -164,6 +164,36 @@ input[type="submit"] {
   font-size: 1.4rem;
   font-weight: bold;
   border-style: none;
+  border-radius: 0.3rem;
+}
+
+.btn_follow {
+  margin-left: 1rem;
+  padding: 0.3rem 2rem;
+  color: #fff;
+  background-color: #3597ed;
+  font-size: 1.4rem;
+  font-weight: bold;
+  border-style: none;
+  border-radius: 0.3rem;
+
+  &:active {
+    background-color: lighten(#3597ed, 10%);
+  }
+}
+
+.btn_following {
+  margin-left: 1rem;
+  padding: 0.3rem 2rem;
+  background-color: $bg_color;
+  font-size: 1.4rem;
+  font-weight: bold;
+  border: 1px solid $line_color;
+  border-radius: 0.3rem;
+
+  &:active {
+    background-color: lighten($bg_color, 10%);
+  }
 }
 
 input:focus {

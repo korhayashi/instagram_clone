@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :user_icon, :saved]
-  before_action :not_logged_in, only: [:edit, :update, :show, :saved]
+  before_action :set_user, only: [:show, :edit, :update, :user_icon, :saved, :follower, :following]
+  before_action :not_logged_in, only: [:edit, :update, :show, :saved, :follower, :following]
   before_action :logged_in, only: [:new, :confirm, :create]
   before_action :defferent_user, only: [:edit, :update]
 
@@ -45,6 +45,14 @@ class UsersController < ApplicationController
 
   def saved
     @images = @user.my_bookmarks.order(created_at: :desc)
+  end
+
+  def follower
+    @users = @user.followers
+  end
+
+  def following
+    @users = @user.following
   end
 
   private

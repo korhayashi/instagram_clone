@@ -3,6 +3,8 @@
 #                    Prefix Verb   URI Pattern                                                                              Controller#Action
 #             confirm_users POST   /users/confirm(.:format)                                                                 users#confirm
 #                saved_user GET    /users/:id/saved(.:format)                                                               users#saved
+#             follower_user GET    /users/:id/follower(.:format)                                                            users#follower
+#            following_user GET    /users/:id/following(.:format)                                                           users#following
 #                     users POST   /users(.:format)                                                                         users#create
 #                  new_user GET    /users/new(.:format)                                                                     users#new
 #                 edit_user GET    /users/:id/edit(.:format)                                                                users#edit
@@ -29,6 +31,8 @@
 #                reply_good DELETE /reply_goods/:id(.:format)                                                               reply_goods#destroy
 #                 bookmarks POST   /bookmarks(.:format)                                                                     bookmarks#create
 #                  bookmark DELETE /bookmarks/:id(.:format)                                                                 bookmarks#destroy
+#             relationships POST   /relationships(.:format)                                                                 relationships#create
+#              relationship DELETE /relationships/:id(.:format)                                                             relationships#destroy
 #         letter_opener_web        /inbox                                                                                   LetterOpenerWeb::Engine
 #        rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
 # rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
@@ -51,6 +55,8 @@ Rails.application.routes.draw do
 
     member do
       get :saved
+      get :follower
+      get :following
     end
   end
 
@@ -69,6 +75,8 @@ Rails.application.routes.draw do
   resources :reply_goods, only: [:create, :destroy]
 
   resources :bookmarks, only: [:create, :destroy]
+
+  resources :relationships, only: [:create, :destroy]
 
   mount LetterOpenerWeb::Engine, at: "/inbox" if Rails.env.development?
 end

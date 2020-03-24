@@ -1,0 +1,70 @@
+<div class="user_header">
+  <div class="user_header_left">
+    <% if @user.user_image.blank? %>
+      <%= icon 'fas', 'user-circle', class: 'user_icon user_detail_icon' %>
+    <% else %>
+      <%= image_tag @user.user_image.url, class: 'user_icon user_detail_icon' %>
+    <% end %>
+  </div>
+  <div class="user_header_right">
+    <div class="user_detail_name_area">
+      <div class="user_detail_username">
+        <%= @user.user_name %>
+      </div>
+
+      <% if current_user.id == @user.id %>
+        <div class="user_detail_edit_profile emphasis">
+          <%= link_to edit_user_path(current_user.id) do %>
+            <%= 'プロフィールを編集' %>
+          <% end %>
+        </div>
+        <div class="logout">
+          <%= link_to session_path(current_user.id), method: :delete, data: { confirm: 'ログアウトしてよろしいですか？' } do %>
+            <%= icon 'fas', 'sign-out-alt' %>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="follow_form_<%= @user.id %>">
+          <% unless current_user.following?(@user) %>
+            <%= form_with(model: current_user.active_relationships.build(followed_id: @user.id)) do |f| %>
+              <%= f.hidden_field :followed_id %>
+              <%= f.submit 'フォローする', class: 'btn_follow' %>
+            <% end %>
+          <% else %>
+            <%= form_with(model: current_user.active_relationships.find_by(followed_id: @user.id), method: :delete) do |f| %>
+              <%= f.submit 'フォロー中', class: 'btn_following' %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="user_detail_info">
+      <div class="user_detail_posts">
+        <%= '投稿' %>
+        <span class="emphasis">
+          <%= @user.entries.count %>
+        </span>
+        <%= '件' %>
+      </div>
+      <%= link_to follower_user_path(@user.id) do %>
+        <%= 'フォロワー' %>
+        <span class="emphasis">
+          <%= @user.passive_relationships.count %>
+        </span>
+        <%= '人' %>
+      <% end %>
+      <%= link_to following_user_path(@user.id) do %>
+        <%= 'フォロー中' %>
+        <span class="emphasis">
+          <%= @user.active_relationships.count %>
+        </span>
+        <%= '人' %>
+      <% end %>
+    </div>
+
+    <div class="user_detail_name emphasis">
+      <%= @user.name %>
+    </div>
+  </div>
+</div>
