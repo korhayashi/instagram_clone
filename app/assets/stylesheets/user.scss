@@ -29,6 +29,10 @@
   margin-right: 8rem;
 }
 
+.user_header_right {
+  width: 40rem;
+}
+
 .user_detail_icon {
   width: 14.5rem;
   height: 14.5rem;
@@ -59,8 +63,10 @@
   }
 }
 
-.user_detail_posts {
+.user_detail_info {
   margin: 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .user_detail_name {
@@ -272,4 +278,36 @@
 .confirm_position_right {
   font-weight: bold;;
   text-align: right;
+}
+
+// フォローページ
+.follow_container {
+  width: 40rem;
+  padding: 10rem 0;
+  margin: 0 auto;
+}
+
+.follow_user {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.follow_icon {
+  margin-right: 1rem;
+}
+
+.follow_user_icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  font-size: 3.5rem;
+}
+
+.follow_name {
+  color: $subfont_color;
+  font-size: 1.4rem;
+}
+
+.follow_btn {
+  margin-left: auto;
 }

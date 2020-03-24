@@ -1,47 +1,8 @@
 <%= render 'header' %>
 
-<div class="contianer">
+<div class="container">
   <div class="user_container">
-    <div class="user_header">
-      <div class="user_header_left">
-        <% if @user.user_image.blank? %>
-          <%= icon 'fas', 'user-circle', class: 'user_icon user_detail_icon' %>
-        <% else %>
-          <%= image_tag @user.user_image.url, class: 'user_icon user_detail_icon' %>
-        <% end %>
-      </div>
-      <div class="user_header_right">
-        <div class="user_detail_name_area">
-          <span class="user_detail_username">
-            <%= @user.user_name %>
-          </span>
-
-          <% if current_user.id == @user.id %>
-            <span class="user_detail_edit_profile emphasis">
-              <%= link_to edit_user_path(current_user.id) do %>
-                <%= 'プロフィールを編集' %>
-              <% end %>
-            </span>
-            <span class="logout">
-              <%= link_to session_path(current_user.id), method: :delete, data: { confirm: 'ログアウトしてよろしいですか？' } do %>
-                <%= icon 'fas', 'sign-out-alt' %>
-              <% end %>
-            </span>
-          <% end %>
-        </div>
-
-        <div class="user_detail_posts">
-          <%= '投稿' %>
-          <span class="emphasis">
-            <%= @user.entries.count %>
-          </span>
-          <%= '件' %>
-        </div>
-        <div class="user_detail_name emphasis">
-          <%= @user.name %>
-        </div>
-      </div>
-    </div>
+    <%= render 'user_header' %>
 
     <div class="user_detail_menu">
       <%= link_to user_path(@user.id), class: 'user_detail_all_post another_page' do %>
