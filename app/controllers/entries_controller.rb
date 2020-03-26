@@ -4,7 +4,11 @@ class EntriesController < ApplicationController
   before_action :not_your_entry, only: [:edit, :update, :destroy]
 
   def index
-    @entries = Entry.order(created_at: :desc)
+    ids = current_user.following.map{ |user| user.id }.push(current_user.id)
+    @entries = Entry.where(user_id: ids).order(created_at: :desc)
+    # binding.irb
+
+    # @entries = Entry.order(created_at: :desc)
     @all_reply = Reply.all
     @reply = Reply.new
   end
